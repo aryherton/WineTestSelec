@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MenuTopWrapper = styled.div`
-  width: 250px;
+  width: 290px;
   height: 56px;
   background-color: ${props => props.theme.colors.backgroundCard};
 
