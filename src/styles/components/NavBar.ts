@@ -12,6 +12,7 @@ export const NavBarWrapper = styled.div`
     list-style: none;
     width: 100%;
     height: 100%;
+    background-color: white;
     li {
         height: 100%;
     }
