@@ -1,20 +1,27 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../components/Header';
 import { HomeWrapper } from '../styles/pages/Home';
 import { getArr } from '../services/api';
 import Url from '../help/Url';
+import { setProducts } from '../store/slice/productSlice';
 
 const Home: React.FC = () => {
-  const [product, setProduct] = useState('');
-  const data = useCallback(async () => {
+  const dispatch = useDispatch();
+  const getData = useCallback(async () => {
     const arrProduct = await getArr(Url.ENDPOINT);
-    setProduct(arrProduct);
+
+    dispatch(setProducts(arrProduct));
   }, []);
-  console.log(product);
+  
+  const { products } = useSelector((state: any) => state.products);
+  console.log('Global', products.items,'Global');
+  
+
   useEffect(() => {
-    data();
-  }, [data]);
+    getData();
+  }, [getData]);
 
   return (
     <HomeWrapper>
