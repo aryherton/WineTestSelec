@@ -13,6 +13,8 @@ export const HeaderWrapper = styled.header`
     justify-content: space-between;
     align-items: center;
     width: 40%;
+    height: 90%;
+    background-color: transparent;
   }
 
   h1 {
