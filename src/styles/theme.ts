@@ -1,9 +1,14 @@
 const theme = {
   colors: {
-    background: '#121214',
-    text: '#8257e6',
-    primary: '#8257e6',
-  }
+    background: '#DEDEDE',
+    backgroundCard: '#FFFFFF',
+    textPrimary: '#1D1D1B',
+    textSecondary: '#888888',
+    textPrice: '#B6116E',
+    textButtonCard: '#7EBC43',
+    buttonCard: '#7EBC43',
+
+  },
 };
 
 export default theme;
