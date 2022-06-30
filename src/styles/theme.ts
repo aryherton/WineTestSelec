@@ -6,6 +6,8 @@ const theme = {
     textSecondary: '#888888',
     textPrice: '#B6116E',
     textButtonCard: '#7EBC43',
+    textNavBar: '#555555',
+    textNavBarHover: '#D14B8F',
     buttonCard: '#7EBC43',
 
   },
