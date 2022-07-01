@@ -8,21 +8,24 @@ import Search from '../components/Search';
 
 import { HomeWrapper } from '../styles/pages/Home';
 import { getArr } from '../services/api';
-import Url from '../help/Url';
+import GetEndPoint from '../services/endPoint';
 import { setProducts } from '../store/slice/productSlice';
 
 const Home: React.FC = () => {
   const statusSearch = useSelector((state: any) => state.products.checkSearch);
+  const numPage = useSelector((state: any) => state.products.pages);
+  
   const dispatch = useDispatch();
+  const END_POINT = GetEndPoint(numPage);
   const getData = useCallback(async () => {
-    const arrProduct = await getArr(Url.ENDPOINT);
+    const arrProduct = await getArr(END_POINT);
 
     dispatch(setProducts(arrProduct));
-  }, []);
+  }, [numPage]);
 
   useEffect(() => {
     getData();
-  }, [getData]);
+  }, [getData, numPage]);
 
   return (
     <HomeWrapper>
