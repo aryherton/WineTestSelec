@@ -4,8 +4,8 @@ export default function SearchByPrice() {
   return (
     <SearchByPriceWrapper>
       <div id="divSpanSearchPrice">
-        <span>Refine sua busca</span>
-        <span>Por preço</span>
+        <span id="textRefineBusca">Refine sua busca</span>
+        <span id="textPorPreco">Por preço</span>
       </div>
       <div id="divUlSearchPrice">
         <ul id="ulSearchPrice">
