@@ -1,8 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit'
+import { setHttpAgentOptions } from 'next/dist/server/config'
 
 let initialState = {
   products: [],
   checkSearch: false,
+  pages: 1,
 }
 
 const productSlice = createSlice({
@@ -15,10 +17,14 @@ const productSlice = createSlice({
 
     setCheckSearch(state, action) {
       state.checkSearch = action.payload
+    },
+
+    setPages(state, action) {
+      state.pages = action.payload
     }
   }
 })
 
-export const { setProducts, setCheckSearch } = productSlice.actions
+export const { setProducts, setCheckSearch, setPages } = productSlice.actions
 
 export default productSlice.reducer;
