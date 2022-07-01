@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import Loading from './Loading';
 import { CardProductWrapper } from '../styles/components/CardProduct';
+import ButtonPagination from '../components/ButtonPagination';
 
 export default function CardProduct() {
 const { products: { items: arrProd } } = useSelector((state: any) => state.products);
@@ -47,6 +48,7 @@ return (
         );
       }))
       : (<Loading />)}
+      <ButtonPagination />
     </div>
   </CardProductWrapper>
 );
