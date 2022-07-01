@@ -12,6 +12,14 @@ export const MenuTopWrapper = styled.div`
     list-style: none;
     width: 100%;
     height: 100%;
+
+    a:hover {
+      li {
+        width: 57px;
+        height: 57px;
+      }
+    }
+
     li{
         width: 56px;
         height: 56px;
