@@ -3,17 +3,17 @@ import styled from 'styled-components';
 export const CardProductWrapper = styled.div`
   width: 75%;
   height: 100%;
-  padding: 20px;
+  padding-top: 23px;
   /* background-color: yellow; */
   
   p {
     height: 10%;
     margin-bottom: 15px;
+    padding-left: 10px;
   }
 
   #mainProduct {
     height: 90%;
-    padding-left: 35px;
     display: flex;
     flex-wrap: wrap;
 
