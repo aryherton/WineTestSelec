@@ -24,3 +24,7 @@ const Loading = styled.div`
 `;
 
 export default Loading;
+
+// >>> Referência <<<
+//     Código retirado do link:
+// https://gist.github.com/adrianmcli/9fac3ff3c144c2805be90381eaa8d3d4
