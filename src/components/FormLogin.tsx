@@ -1,8 +1,13 @@
 import React, { useState, } from 'react';
+import { useRouter } from 'next/router';
+
+import { loginAndRegister } from '../services/api'
+import { URL_LOGIN_DB_WINE, URL_REGISTER_USER } from '../services/endPoint';
 
 import { FormLoginWrapper } from '../styles/components/FormLogin';
 
 export default function FormLogin() {
+  const router = useRouter();
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -18,21 +23,21 @@ export default function FormLogin() {
       ...user,
       name: event.target.value,
     });
-  }
+  };
 
   const getEmail = (event) => {
     setUser({
       ...user,
       email: event.target.value,
     });
-  }
+  };
 
   const getPassword = (event) => {
     setUser({
       ...user,
       password: event.target.value,
     });
-  }
+  };
 
   const setValueSubmit = async () => {
     if (inputSubmit.valueTxtLink === 'Registre-se') {
@@ -46,7 +51,21 @@ export default function FormLogin() {
         valueTxtLink: 'Registre-se'
       });
     }
-  }
+  };
+
+  const getToken = async() => {
+    let endPoint: string = '';
+
+    if (user.name) {
+      endPoint = URL_REGISTER_USER;
+    } else {
+      endPoint = URL_LOGIN_DB_WINE;
+    }
+
+    const token: string = await loginAndRegister(endPoint, user);
+    localStorage.setItem('Token', token);
+    router.push('/');
+  };
 
   return (
     <FormLoginWrapper>
@@ -73,7 +92,12 @@ export default function FormLogin() {
           />
         </div>
         <div id="divButtonEnterRegister">
-          <input id="buttonFormLogin" type="submit" value={ inputSubmit.valueSubmit } />
+          <input
+            id="buttonFormLogin"
+            type="button"
+            value={ inputSubmit.valueSubmit }
+            onClick={ getToken }
+          />
           <span id="textRegistreSe"><a onClick={ setValueSubmit }>{ inputSubmit.valueTxtLink }</a></span>
         </div>
       </form>
