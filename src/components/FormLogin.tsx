@@ -34,7 +34,7 @@ export default function FormLogin() {
     });
   }
 
-  const setValueSubmit = async () => {    
+  const setValueSubmit = async () => {
     if (inputSubmit.valueTxtLink === 'Registre-se') {
       setInputSubmit({
         valueSubmit: 'Registrar',
@@ -46,18 +46,19 @@ export default function FormLogin() {
         valueTxtLink: 'Registre-se'
       });
     }
-  }  
+  }
 
   return (
     <FormLoginWrapper>
       <form id="formLogin">
         <div id="divInputsLogin">
-          <input
-            id="inputLoginName"
-            type="text"
-            onChange={ getName }
-            placeholder="Digite seu nome"
-          />
+          {inputSubmit.valueSubmit !== 'Entrar'
+            && <input
+                id="inputLoginName"
+                type="text"
+                onChange={ getName }
+                placeholder="Digite seu nome"
+              />}
           <input
             id="inputLoginEmail"
             type="email"
