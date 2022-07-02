@@ -32,7 +32,7 @@ export default function MenuTop() {
             </li>
           </a>
         </Link>
-        <Link href="/">
+        <Link href="/Login">
           <a>
             <li>
               <Image
