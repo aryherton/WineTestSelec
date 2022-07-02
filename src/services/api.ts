@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import GetEndPoint from '../services/endPoint';
 
+import IProduct from '../interface/IProduct';
+
 const api = axios.create({
   baseURL: `http://wine-back-test.herokuapp.com`,
 });
@@ -27,7 +29,9 @@ export const getArrAll = async () => {
       .map((endPoint: string) => getArr(endPoint))
     );
   
-  return arrProductsAll.reduce((acc, { items }) => acc = [...acc, ...items], []);
+  const arr: IProduct[] = arrProductsAll.reduce((acc, { items }) => acc = [...acc, ...items], []);
+
+  return arr;
 };
 
 export default api;
