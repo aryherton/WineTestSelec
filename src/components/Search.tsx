@@ -16,8 +16,6 @@ export default function Search() {
   const dispatch = useDispatch();
 
   const getValueSearch = async ({target: { value }}) => {
-    console.log(searchName.length);
-    
     if (value) {
       setSearchName(value);
     } if (!value && searchName.length < 2) {
