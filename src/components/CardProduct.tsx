@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Loading from './Loading';
+
 import { CardProductWrapper } from '../styles/components/CardProduct';
 import ButtonPagination from '../components/ButtonPagination';
+
 import IProduct from '../interface/IProduct';
+import ICard from '../interface/ICard';
+
+import { getArrAll } from '../services/api';
 
 export default function CardProduct() {
+  const [totalProducts, setTotalProducts] = useState<number>(0);
+  const [token, setToken] = useState<string | null>(null);
   const [arrProd = [], setArrProd] = useState([]);
   const items = useSelector((state: any) => state.products.products);
   const { filterArrProducts } = useSelector((state: any) => state.products);
@@ -18,14 +25,53 @@ export default function CardProduct() {
       setArrProd(items.items);
     }
   };
+
+  const addProductCart = (idP: number) => {
+    let arrIdProduct: ICard[] = [];
+    const getCart = localStorage.getItem('Cart');
+
+    if (getCart) {
+      arrIdProduct = JSON.parse(getCart);
+      const arrTmp = arrIdProduct.reduce((acc: ICard[], product: ICard, _index: number, arr: ICard[]) => {
+        if (+product.idProduct === +idP) {
+          product.qtd = product.qtd + 1;
+          acc.push(product);
+
+          return acc;
+        } if (arr.some((obj) => obj.idProduct === idP)) {
+          acc.push(product);
+          
+          return acc;
+        }
+        acc = [...arr, { idProduct: idP, qtd: 0}];
+
+        return acc;
+      }, []);
+      
+      localStorage.setItem('Cart', JSON.stringify(arrTmp));
+    } else {
+      arrIdProduct = [{idProduct: idP, qtd: 0}];
+      localStorage.setItem('Cart', JSON.stringify(arrIdProduct));
+    }
+  };
+
+  const getQtdProduct = async () => {
+    const arrAllProducts = await getArrAll();
+    const lengthFil = filterArrProducts.length;
+    const lengthProd = arrAllProducts.length;
+
+    filterArrProducts.length ? setTotalProducts(lengthFil) : setTotalProducts(lengthProd);
+  };
   
   useEffect(() => {
+      setToken(localStorage.getItem('Token'));
       changeArrProducts();
+      getQtdProduct();
   }, [filterArrProducts, items]);
   
   return (
     <CardProductWrapper>
-      <p>49 produtos encontrados</p>
+      <p>{ totalProducts } produtos encontrados</p>
       <div id="mainProduct">
         {arrProd.length
           ? (arrProd.map((product: IProduct, key) => {
@@ -57,7 +103,14 @@ export default function CardProduct() {
                   </div>
                 </div>
                 <div id="divButton">
-                  <input id="buttonCard" type="button" value="ADICIONAR" />
+                  <input
+                    id="buttonCard"
+                    type="button"
+                    value="ADICIONAR"
+                    onClick={ () => {
+                      token && addProductCart(+product.id);
+                    } }
+                    />
                 </div>
               </div>
             );
