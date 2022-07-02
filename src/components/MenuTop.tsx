@@ -22,7 +22,7 @@ export default function MenuTop() {
   return (
     <MenuTopWrapper>
       <ul id="ulMenuTop">
-        <Link href="/">
+        <Link href="">
           <a onClick={ validSearch }>
             <li>
               <Image
