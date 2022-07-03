@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FormLoginWrapper = styled.div`
   width: 400px;
-  height: 100vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
