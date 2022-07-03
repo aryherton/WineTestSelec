@@ -4,11 +4,11 @@ export const MainPageProductWrapper = styled.main`
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  margin-left: 70px;
   align-content: center;
 
   section {
-    width: 640px;
+    width: 680px;
     height: 580px;
     padding-top: 25px;
     display: flex;
