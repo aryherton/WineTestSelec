@@ -5,6 +5,7 @@ let initialState = {
   checkSearch: false,
   pages: 1,
   filterArrProducts: [],
+  lengthCart: 0,
 }
 
 const productSlice = createSlice({
@@ -25,7 +26,11 @@ const productSlice = createSlice({
 
     setFilterArrProducts(state, action) {
       state.filterArrProducts = action.payload
-    }
+    },
+
+    setLengthCart(state, action) {
+      state.lengthCart += action.payload
+    },
   }
 })
 
@@ -33,6 +38,7 @@ export const {
   setProducts,
   setCheckSearch,
   setPages,
-  setFilterArrProducts } = productSlice.actions
+  setFilterArrProducts,
+  setLengthCart } = productSlice.actions
 
 export default productSlice.reducer;
