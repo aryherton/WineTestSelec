@@ -6,12 +6,12 @@ export const ButtonComeBackWrapper = styled.div`
   padding-top: 40px;
 
   a {
-    width: 100%;
-    height: 100%;
+    width: 20%;
+    height: 20%;
     padding-left: 130px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 25px;
   }
 `;
