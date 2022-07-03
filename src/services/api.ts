@@ -4,6 +4,7 @@ import GetEndPoint from '../services/endPoint';
 
 import IProduct from '../interface/IProduct';
 import IUser from '../interface/IUser';
+import ICart from '../interface/ICart';
 
 const api = axios.create({
   baseURL: `http://wine-back-test.herokuapp.com`,
@@ -36,11 +37,21 @@ export const getArrAll = async () => {
 };
 
 export const loginAndRegister = async (endPoint: string, body: IUser) => {
-  console.log(endPoint, 'endPointttttttt');
-  
   const { data } = await api.post(endPoint, body);
   
   return data.token;
+}
+
+export const setProduct = async (endPoint: string, body: ICart[], token: string) => {
+  api.defaults.headers.common['Authorization'] = token;
+  await api.post(endPoint, body);
+}
+
+export const getProduct = async (endPoint: string, token: string) => {
+  api.defaults.headers.common['Authorization'] = token;
+  const cartProduct = api.get(endPoint);
+
+  return cartProduct;
 }
 
 export default api;
