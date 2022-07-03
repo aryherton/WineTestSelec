@@ -125,6 +125,7 @@ export const CardProductWrapper = styled.div`
 
       #divButton {
         width: 100%;
+        margin-top: 8px;
         #buttonCard {
           color: white;
           width: 100%;
