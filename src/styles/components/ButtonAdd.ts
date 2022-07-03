@@ -44,6 +44,5 @@ export const ButtonAddWrapper = styled.div`
     font-weight: bold;
     line-height: 19px;
     text-align: center;
-    cursor: pointer;
   }
 `;
