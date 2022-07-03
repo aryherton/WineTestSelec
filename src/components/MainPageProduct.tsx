@@ -6,8 +6,6 @@ import { MainPageProductWrapper } from '../styles/components/MainPageProduct';
 
 import IProduct from '../interface/IProduct';
 
-import deVolta from '../images/deVolta.png';
-
 export default function MainPageProduct() {
   const [product, setProduct] = useState<IProduct>();
   const { productForPage } = useSelector((state: any) => state.products);
@@ -31,15 +29,15 @@ export default function MainPageProduct() {
         <div id="infoName">
           <span id="country">
             Vinhos
-            <img src={ deVolta } alt="min_img" />
+            <span className="iconMaiorq">{'>'}</span>
             { product && product.country }
-            <img src={ deVolta } alt="min_img" />
-            { product && product.region }
+            <span className="iconMaiorq">{'>'}</span>
+            <span id="nameRegion">{ product && product.region }</span>
           </span>
-          <span>{ product && product.name }</span>
+          <span id="productName">{ product && product.name }</span>
         </div>
         <div id="infoProduct">
-          <img src={ product && product.flag } alt="imgRegion" />
+          <img id="miniImgRegion" src={ product && product.flag } alt="imgRegion" />
           <span>{ product && product.country }</span>
           <span>{ product && product.type }</span>
           <span>{ product && product.classification }</span>
@@ -47,7 +45,7 @@ export default function MainPageProduct() {
         </div>
         <div id="divPrice">
           <span id="priceSocio">
-            R$
+            <h1 id="textSimb">R$</h1>
             { product && product.priceMember }
           </span>
           <span id="priceNoSocio">
@@ -55,8 +53,8 @@ export default function MainPageProduct() {
           </span>
         </div>
         <div id="comentarioSomelier">
-          <span>Comentário do Sommelier</span>
-          <pre>{ product && product.sommelierComment }</pre>
+          <span id="titelComentario">Comentário do Sommelier</span>
+          <pre id="textComentario">{ product && product.sommelierComment }</pre>
         </div>
         <ButtonAdd />
       </aside>
