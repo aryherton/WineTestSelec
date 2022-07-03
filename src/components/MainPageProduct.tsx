@@ -56,7 +56,7 @@ export default function MainPageProduct() {
           <span id="titelComentario">Comentário do Sommelier</span>
           <pre id="textComentario">{ product && product.sommelierComment }</pre>
         </div>
-        <ButtonAdd />
+        <ButtonAdd idP={ product && +product.id } />
       </aside>
     </MainPageProductWrapper>
   );
