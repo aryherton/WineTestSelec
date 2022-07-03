@@ -8,11 +8,13 @@ import { CardProductWrapper } from '../styles/components/CardProduct';
 import ButtonPagination from '../components/ButtonPagination';
 
 import IProduct from '../interface/IProduct';
-import ICard from '../interface/ICard';
+import ICart from '../interface/ICart';
+import { URL_PRODUCT_DB_WINE } from '../services/endPoint';
 
 import { getArrAll } from '../services/api';
 import { setLengthCart } from '../store/slice/productSlice';
 import { setProductForPage } from '../store/slice/productSlice';
+import { setProduct } from '../services/api';
 
 export default function CardProduct() {
   const router = useRouter();
@@ -22,6 +24,12 @@ export default function CardProduct() {
   const [arrProd = [], setArrProd] = useState([]);
   const items = useSelector((state: any) => state.products.products);
   const { filterArrProducts } = useSelector((state: any) => state.products);
+
+  const setProductDbMongo = (cartProduct: ICart[]) => {
+    if (token) {
+      setProduct(URL_PRODUCT_DB_WINE, cartProduct, token);
+    }
+  }
   
   const changeArrProducts = () => {
     if (filterArrProducts.length) {
@@ -32,12 +40,12 @@ export default function CardProduct() {
   };
 
   const addProductCart = (idP: number) => {
-    let arrIdProduct: ICard[] = [];
+    let arrIdProduct: ICart[] = [];
     const getCart = localStorage.getItem('Cart');
 
     if (getCart) {
       arrIdProduct = JSON.parse(getCart);
-      const arrTmp = arrIdProduct.reduce((acc: ICard[], product: ICard, _index: number, arr: ICard[]) => {
+      const arrTmp = arrIdProduct.reduce((acc: ICart[], product: ICart, _index: number, arr: ICart[]) => {
         if (+product.idProduct === +idP) {
           product.qtd = product.qtd + 1;
           acc.push(product);
@@ -55,10 +63,28 @@ export default function CardProduct() {
       }, []);
       
       localStorage.setItem('Cart', JSON.stringify(arrTmp));
+
+      const arr = localStorage.getItem('Cart');
+
+      if(arr) {
+        const arrCart = JSON.parse(arr);
+        setProductDbMongo(arrCart);
+      } else {
+        setProductDbMongo([]);
+      }
     } else {
       arrIdProduct = [{idProduct: idP, qtd: 1}];
       localStorage.setItem('Cart', JSON.stringify(arrIdProduct));
       dispatch(setLengthCart(1));
+
+      const arr = localStorage.getItem('Cart');
+
+      if(arr) {
+        const arrCart = JSON.parse(arr);
+        setProductDbMongo(arrCart);
+      } else {
+        setProductDbMongo([]);
+      }
     }
   };
 
