@@ -8,6 +8,7 @@ import { ButtonAddWrapper } from '../styles/components/ButtonAdd';
 
 export default function ButtonAdd({ idP }) {
   const dispatch = useDispatch();
+  const [qtdProductCart, setQtdProductCart] = useState<number>(0);
   const [token, setToken] = useState<string>('');
 
   const addProductCart = (idP: number) => {
@@ -19,6 +20,7 @@ export default function ButtonAdd({ idP }) {
       const arrTmp = arrIdProduct.reduce((acc: ICard[], product: ICard, _index: number, arr: ICard[]) => {
         if (+product.idProduct === +idP) {
           product.qtd = product.qtd + 1;
+          setQtdProductCart(qtdProductCart + 1);
           acc.push(product);
 
           return acc;
@@ -36,6 +38,7 @@ export default function ButtonAdd({ idP }) {
       localStorage.setItem('Cart', JSON.stringify(arrTmp));
     } else {
       arrIdProduct = [{idProduct: idP, qtd: 1}];
+      setQtdProductCart(1);
       localStorage.setItem('Cart', JSON.stringify(arrIdProduct));
     }
   };
@@ -49,8 +52,11 @@ export default function ButtonAdd({ idP }) {
       const arrTmp = arrIdProduct.reduce((acc: ICard[], product: ICard, _index: number, arr: ICard[]) => {
         if (+product.idProduct === +idP) {
           product.qtd = product.qtd - 1;
+          setQtdProductCart(qtdProductCart - 1);
+
           if (product.qtd < 1) {
             dispatch(subLengthCart(1));
+            setQtdProductCart(0);
             
             return acc;
           }
@@ -75,14 +81,27 @@ export default function ButtonAdd({ idP }) {
     }
   };
 
+  const getQtdProductCart = () => {
+    const reqStorCart = localStorage.getItem('Cart');
+    const qtd = reqStorCart && JSON.parse(reqStorCart);
+    
+    if (qtd) {
+      const checkProduct = qtd.filter((obj: ICard) => +obj.idProduct === +idP)
+      checkProduct.length && setQtdProductCart(checkProduct[0].qtd);
+    } else {
+      setQtdProductCart(0);
+    }
+  }
+
   useEffect(() => {
     const stringToken = localStorage.getItem('Token');
 
     if (stringToken) {
       setToken(stringToken);
+      getQtdProductCart();
     }
     
-  }, []);
+  }, [qtdProductCart]);
 
   return (
     <ButtonAddWrapper>
@@ -93,7 +112,7 @@ export default function ButtonAdd({ idP }) {
         >
           -
         </button>
-        <span id="imgQtdProduct">0</span>
+        <span id="imgQtdProduct">{ qtdProductCart }</span>
         <button
           className="imgAddSub"
           onClick={ () => { (token && idP) && addProductCart(idP); } }>
