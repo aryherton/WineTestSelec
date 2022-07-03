@@ -20,15 +20,11 @@ export const CardProductWrapper = styled.div`
     #cardProduct {
       width: 256px;
       height: 387px;
-      margin: 10px;
+      margin: 15px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
-
-      a {
-          cursor: pointer;
-        }
 
       #dataPorduct {
         width: 256px;
@@ -40,12 +36,17 @@ export const CardProductWrapper = styled.div`
         justify-content: space-evenly;
         box-shadow: 1px 1px 7px 0px rgba(0, 0, 0, 0.2);
 
+        #linkPageProduct {
+          cursor: pointer;
+        }
+
         #imgWineFlag {
           width: 198.57px;
           height: 178.13px;
           display: flex;
           padding-left: 35px;
           align-items: flex-end;
+          margin-left: 10px;
 
           #imgWines {
             img {
@@ -132,6 +133,7 @@ export const CardProductWrapper = styled.div`
           height: 39.36px;
           border-radius: 4%;
           background-color: #7EbC43;
+          cursor: pointer;
         }
       }
     }
