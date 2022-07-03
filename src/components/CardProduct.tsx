@@ -86,8 +86,8 @@ export default function CardProduct() {
           ? (arrProd.map((product: IProduct, key) => {
             return (
               <div id="cardProduct" key={product.id}>
-                <a onClick={ routerForPageProduct }>
-                  <div id="dataPorduct">
+                <div id="dataPorduct">
+                  <a id="linkPageProduct" onClick={ routerForPageProduct }>
                     <div id="imgWineFlag">
                       <div id="imgWines">
                         <img src={product.image} alt="img_wine" />
@@ -99,30 +99,30 @@ export default function CardProduct() {
                     <div id="nameWine">
                         <p>{product.name}</p>
                     </div>
-                    <div id="valuePrice">
-                        <span id="price">R${product.price}</span>
-                        <span id="discount">{product.discount}% OFF</span>
-                    </div>
-                    <div id="textSocioPrice">
-                        <span id="textSocio">SÓCIO WINE</span>
-                        <span id="priceMember">R$ {product.priceMember}</span>
-                    </div>
-                    <div id="textNonMemberPrice">
-                        <span id="nonMember">NÃO SÓCIO</span>
-                        <span id="priceNonMember">R$ {product.priceNonMember}</span>
-                    </div>
+                  </a>
+                  <div id="valuePrice">
+                      <span id="price">R${product.price}</span>
+                      <span id="discount">{product.discount}% OFF</span>
                   </div>
-                  <div id="divButton">
-                    <input
-                      id="buttonCard"
-                      type="button"
-                      value="ADICIONAR"
-                      onClick={ () => {
-                        token && addProductCart(+product.id);
-                      } }
-                      />
+                  <div id="textSocioPrice">
+                      <span id="textSocio">SÓCIO WINE</span>
+                      <span id="priceMember">R$ {product.priceMember}</span>
                   </div>
-                </a>
+                  <div id="textNonMemberPrice">
+                      <span id="nonMember">NÃO SÓCIO</span>
+                      <span id="priceNonMember">R$ {product.priceNonMember}</span>
+                  </div>
+                </div>
+                <div id="divButton">
+                  <input
+                    id="buttonCard"
+                    type="button"
+                    value="ADICIONAR"
+                    onClick={ () => {
+                      token && addProductCart(+product.id);
+                    } }
+                    />
+                </div>
               </div>
             );
         })): <Loading /> }
