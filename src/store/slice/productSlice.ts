@@ -33,6 +33,10 @@ const productSlice = createSlice({
       state.lengthCart += action.payload
     },
 
+    subLengthCart(state, action) {
+      state.lengthCart -= action.payload
+    },
+
     setProductForPage(state, action) {
       state.productForPage = action.payload
     }
@@ -45,6 +49,7 @@ export const {
   setPages,
   setFilterArrProducts,
   setLengthCart,
+  subLengthCart,
   setProductForPage, } = productSlice.actions
 
 export default productSlice.reducer;
