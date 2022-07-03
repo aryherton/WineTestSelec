@@ -1,12 +1,14 @@
+import { ButtonAddWrapper } from '../styles/components/ButtonAdd';
+
 export default function ButtonAdd() {
   return (
-    <div id="buttonPageProduct">
+    <ButtonAddWrapper>
       <div id="addSubProduct">
-        <button id="imgAdd"> - </button>
+        <button className="imgAddSub"> - </button>
         <span id="imgQtdProduct">0</span>
-        <button id="imgSub"> + </button>
+        <button className="imgAddSub"> + </button>
       </div>
       <button id="buttonAdd">Adicionar</button>
-    </div>
+    </ButtonAddWrapper>
   );
 }
