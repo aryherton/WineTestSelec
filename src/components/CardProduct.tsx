@@ -12,6 +12,7 @@ import ICard from '../interface/ICard';
 
 import { getArrAll } from '../services/api';
 import { setLengthCart } from '../store/slice/productSlice';
+import { setProductForPage } from '../store/slice/productSlice';
 
 export default function CardProduct() {
   const router = useRouter();
@@ -68,7 +69,8 @@ export default function CardProduct() {
     filterArrProducts.length ? setTotalProducts(lengthFil) : setTotalProducts(lengthProd);
   };
 
-  const routerForPageProduct = () => {
+  const routerForPageProduct = (product) => {
+    dispatch(setProductForPage(product));
     router.push('/Product');
   }
   
@@ -87,7 +89,7 @@ export default function CardProduct() {
             return (
               <div id="cardProduct" key={product.id}>
                 <div id="dataPorduct">
-                  <a id="linkPageProduct" onClick={ routerForPageProduct }>
+                  <a id="linkPageProduct" onClick={ () => routerForPageProduct(product) }>
                     <div id="imgWineFlag">
                       <div id="imgWines">
                         <img src={product.image} alt="img_wine" />
