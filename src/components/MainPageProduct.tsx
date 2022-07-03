@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import ButtonAdd from './ButtonAdd';
+import { MainPageProductWrapper } from '../styles/components/MainPageProduct';
 
 import IProduct from '../interface/IProduct';
 
@@ -18,7 +19,7 @@ export default function MainPageProduct() {
   }, [productForPage]);
 
   return (
-    <div>
+    <MainPageProductWrapper>
       <section>
         <img
           id="vinhos"
@@ -59,6 +60,6 @@ export default function MainPageProduct() {
         </div>
         <ButtonAdd />
       </aside>
-    </div>
+    </MainPageProductWrapper>
   );
 }
