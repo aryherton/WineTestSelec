@@ -48,7 +48,7 @@ export default function CardProduct() {
           
           return acc;
         }
-        acc = [...arr, { idProduct: idP, qtd: 0}];
+        acc = [...arr, { idProduct: idP, qtd: 1}];
         dispatch(setLengthCart(1));
 
         return acc;
@@ -56,8 +56,9 @@ export default function CardProduct() {
       
       localStorage.setItem('Cart', JSON.stringify(arrTmp));
     } else {
-      arrIdProduct = [{idProduct: idP, qtd: 0}];
+      arrIdProduct = [{idProduct: idP, qtd: 1}];
       localStorage.setItem('Cart', JSON.stringify(arrIdProduct));
+      dispatch(setLengthCart(1));
     }
   };
 
