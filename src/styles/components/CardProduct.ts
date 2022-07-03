@@ -26,6 +26,10 @@ export const CardProductWrapper = styled.div`
       align-items: center;
       justify-content: space-around;
 
+      a {
+          cursor: pointer;
+        }
+
       #dataPorduct {
         width: 256px;
         height: 333px;
