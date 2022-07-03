@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from './Loading';
 
@@ -10,8 +10,10 @@ import IProduct from '../interface/IProduct';
 import ICard from '../interface/ICard';
 
 import { getArrAll } from '../services/api';
+import { setLengthCart } from '../store/slice/productSlice';
 
 export default function CardProduct() {
+  const dispatch = useDispatch();
   const [totalProducts, setTotalProducts] = useState<number>(0);
   const [token, setToken] = useState<string | null>(null);
   const [arrProd = [], setArrProd] = useState([]);
@@ -44,6 +46,7 @@ export default function CardProduct() {
           return acc;
         }
         acc = [...arr, { idProduct: idP, qtd: 0}];
+        dispatch(setLengthCart(1));
 
         return acc;
       }, []);
@@ -64,9 +67,9 @@ export default function CardProduct() {
   };
   
   useEffect(() => {
-      setToken(localStorage.getItem('Token'));
-      changeArrProducts();
-      getQtdProduct();
+    setToken(localStorage.getItem('Token'));
+    changeArrProducts();
+    getQtdProduct();
   }, [filterArrProducts, items]);
   
   return (
