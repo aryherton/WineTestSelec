@@ -1,4 +1,4 @@
-export default interface ICard {
+export default interface ICart {
   idProduct: number;
   qtd: number,
 };
