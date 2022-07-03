@@ -17,7 +17,7 @@ export default function ButtonComeBack() {
             src={volte}
             alt="Button_Volte"
           />
-          <span>HOME</span>
+          <span>VOLTAR</span>
       </a>
     </ButtonComeBackWrapper>
   );
