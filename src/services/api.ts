@@ -3,13 +3,14 @@ import axios from 'axios';
 import GetEndPoint from '../services/endPoint';
 
 import IProduct from '../interface/IProduct';
+import IUser from '../interface/IUser';
 
 const api = axios.create({
   baseURL: `http://wine-back-test.herokuapp.com`,
 });
 
-export const getArr = async (endpoint: string) => {
-  const data = await api.get(endpoint)
+export const getArr = async (endPoint: string) => {
+  const data = await api.get(endPoint)
     .then((resp) => resp.data);
 
   return data;
@@ -33,5 +34,13 @@ export const getArrAll = async () => {
 
   return arr;
 };
+
+export const loginAndRegister = async (endPoint: string, body: IUser) => {
+  console.log(endPoint, 'endPointttttttt');
+  
+  const { data } = await api.post(endPoint, body);
+  
+  return data.token;
+}
 
 export default api;
