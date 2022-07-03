@@ -8,6 +8,8 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   height: 88.23px;
   background-color: ${props => props.theme.colors.backgroundCard};
+  border-bottom: solid 2px;
+  border-color: #cccccc;
 
   #logo_wine {
     display: flex;
