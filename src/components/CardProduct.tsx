@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import Loading from './Loading';
 
@@ -13,6 +14,7 @@ import { getArrAll } from '../services/api';
 import { setLengthCart } from '../store/slice/productSlice';
 
 export default function CardProduct() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [totalProducts, setTotalProducts] = useState<number>(0);
   const [token, setToken] = useState<string | null>(null);
@@ -65,6 +67,10 @@ export default function CardProduct() {
 
     filterArrProducts.length ? setTotalProducts(lengthFil) : setTotalProducts(lengthProd);
   };
+
+  const routerForPageProduct = () => {
+    router.push('/Product');
+  }
   
   useEffect(() => {
     setToken(localStorage.getItem('Token'));
@@ -80,41 +86,43 @@ export default function CardProduct() {
           ? (arrProd.map((product: IProduct, key) => {
             return (
               <div id="cardProduct" key={product.id}>
-                <div id="dataPorduct">
-                  <div id="imgWineFlag">
-                    <div id="imgWines">
-                      <img src={product.image} alt="img_wine" />
+                <a onClick={ routerForPageProduct }>
+                  <div id="dataPorduct">
+                    <div id="imgWineFlag">
+                      <div id="imgWines">
+                        <img src={product.image} alt="img_wine" />
+                      </div>
+                      <div id="flag">
+                          <img src={product.flag} alt="flag_country" />
+                      </div>
                     </div>
-                    <div id="flag">
-                        <img src={product.flag} alt="flag_country" />
+                    <div id="nameWine">
+                        <p>{product.name}</p>
+                    </div>
+                    <div id="valuePrice">
+                        <span id="price">R${product.price}</span>
+                        <span id="discount">{product.discount}% OFF</span>
+                    </div>
+                    <div id="textSocioPrice">
+                        <span id="textSocio">SÓCIO WINE</span>
+                        <span id="priceMember">R$ {product.priceMember}</span>
+                    </div>
+                    <div id="textNonMemberPrice">
+                        <span id="nonMember">NÃO SÓCIO</span>
+                        <span id="priceNonMember">R$ {product.priceNonMember}</span>
                     </div>
                   </div>
-                  <div id="nameWine">
-                      <p>{product.name}</p>
+                  <div id="divButton">
+                    <input
+                      id="buttonCard"
+                      type="button"
+                      value="ADICIONAR"
+                      onClick={ () => {
+                        token && addProductCart(+product.id);
+                      } }
+                      />
                   </div>
-                  <div id="valuePrice">
-                      <span id="price">R${product.price}</span>
-                      <span id="discount">{product.discount}% OFF</span>
-                  </div>
-                  <div id="textSocioPrice">
-                      <span id="textSocio">SÓCIO WINE</span>
-                      <span id="priceMember">R$ {product.priceMember}</span>
-                  </div>
-                  <div id="textNonMemberPrice">
-                      <span id="nonMember">NÃO SÓCIO</span>
-                      <span id="priceNonMember">R$ {product.priceNonMember}</span>
-                  </div>
-                </div>
-                <div id="divButton">
-                  <input
-                    id="buttonCard"
-                    type="button"
-                    value="ADICIONAR"
-                    onClick={ () => {
-                      token && addProductCart(+product.id);
-                    } }
-                    />
-                </div>
+                </a>
               </div>
             );
         })): <Loading /> }
