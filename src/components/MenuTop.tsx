@@ -14,6 +14,8 @@ import { setCheckSearch } from '../store/slice/productSlice';
 
 export default function MenuTop() {
   const [token, setToken] = useState<string>('');
+  const [qtdProductCard, setQtdProductCard] = useState<number>(0);
+  const { lengthCart } = useSelector((state: any) => state.products);
   const statusSearch = useSelector((state: any) => state.products.checkSearch);
   const dispatch = useDispatch();
   
@@ -28,12 +30,18 @@ export default function MenuTop() {
   }
 
   useEffect(() => {
+    const checkCart = localStorage.getItem('Cart');
     const keyToken = localStorage.getItem('Token');
 
+    if (checkCart) {
+      const arrCart = JSON.parse(checkCart);
+       setQtdProductCard(arrCart.length);
+    }
+    
     if (keyToken) {
       setToken(keyToken);
     }
-  }, [token]);
+  }, [token, lengthCart]);
 
   return (
     <MenuTopWrapper>
@@ -64,7 +72,7 @@ export default function MenuTop() {
             alt="wineBox"
           />
           <div id="qtdWineBox">
-            0
+            { qtdProductCard }
           </div>
         </li>
       </ul>
