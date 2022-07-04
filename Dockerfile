@@ -8,6 +8,6 @@ FROM node:16-alpine
 
  COPY . .
 
- EXPOSE 3005
+ EXPOSE 3000
 
  CMD ["npm", "run", "dev"]
