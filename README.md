@@ -54,7 +54,15 @@ Dentro da pasta do projeto digite:
 
 ### Para executar com docker:
 #### na raiz do projeto digite
-```docker build```
+
+```"docker build ."```
+##### OBS: Digite sem as aspas
+
+### Após realizar o build, execute o container
+
+```"docker run -p 3000:3000 -identificação do container-"```
+
+##### OBS: Digite sem as aspas
 
 ## 🛠️ Construído com
 
