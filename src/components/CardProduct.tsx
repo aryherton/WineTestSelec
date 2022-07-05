@@ -119,10 +119,10 @@ export default function CardProduct() {
                   <a id="linkPageProduct" onClick={ () => routerForPageProduct(product) }>
                     <div id="imgWineFlag">
                       <div id="imgWines">
-                        <img src={product.image} alt="img_wine" />
+                        <picture><img src={product.image} alt="img_wine" /></picture>
                       </div>
                       <div id="flag">
-                          <img src={product.flag} alt="flag_country" />
+                          <picture><img src={product.flag} alt="flag_country" /></picture>
                       </div>
                     </div>
                     <div id="nameWine">
