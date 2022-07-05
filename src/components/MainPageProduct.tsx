@@ -19,11 +19,13 @@ export default function MainPageProduct() {
   return (
     <MainPageProductWrapper>
       <section>
-        <img
-          id="vinhos"
-          src={ product && product.image }
-          alt="image"
-        />
+        <picture>
+          <img
+            id="vinhos"
+            src={ product && product.image }
+            alt="image"
+          />
+        </picture>
       </section>
       <aside>
         <div id="infoName">
@@ -37,7 +39,7 @@ export default function MainPageProduct() {
           <span id="productName">{ product && product.name }</span>
         </div>
         <div id="infoProduct">
-          <img id="miniImgRegion" src={ product && product.flag } alt="imgRegion" />
+          <picture><img id="miniImgRegion" src={ product && product.flag } alt="imgRegion" /></picture>
           <span>{ product && product.country }</span>
           <span>{ product && product.type }</span>
           <span>{ product && product.classification }</span>
